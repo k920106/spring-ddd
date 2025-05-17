@@ -2,7 +2,7 @@ package com.spring.www.presentation.order;
 
 import java.util.List;
 
-public record OrderCreateRequest(
+public record OrderCreateOtherRequest(
         String odrStusCd,
         String odrerId,
         String odrerNm,
@@ -19,6 +19,7 @@ public record OrderCreateRequest(
         String odrTypeCd,
         String odrDd,
         String cncMemo,
-        String delYn
+        String delYn,
+        String promotionName
 ) {
 }

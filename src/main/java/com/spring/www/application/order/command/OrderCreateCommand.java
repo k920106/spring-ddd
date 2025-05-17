@@ -1,12 +1,12 @@
-package com.spring.www.domain.order;
+package com.spring.www.application.order.command;
 
-import jakarta.validation.constraints.Size;
+import com.spring.www.domain.order.OrderUser;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
 
 @Builder
-public record Order(
+public record OrderCreateCommand(
         Long id,
         String odrStusCd,
         String odrerId,
@@ -25,7 +25,6 @@ public record Order(
         String odrTypeCd,
         String odrDd,
         LocalDateTime odrDt,
-        @Size(min = 4, message = "cncMemo는 4자 이상이어야 합니다.")
         String cncMemo,
         LocalDateTime cncDt,
         String delYn

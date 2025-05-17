@@ -1,6 +1,8 @@
 package com.spring.www.infrastructure.persistence.order;
 
 import com.spring.www.domain.order.Order;
+import com.spring.www.domain.order.OrderUser;
+import com.spring.www.infrastructure.persistence.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class OrderEntity {
+public class OrderEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -93,12 +95,16 @@ public class OrderEntity {
     }
 
     public static OrderEntity from(Order order) {
+        OrderUser orderUser = order.orderUser();
         return new OrderEntity(
                 null,
                 order.odrStusCd(),
                 order.odrerId(),
-                order.odrerNm(),
-                order.odrerTelNo(),
+                // [상황] 주문자는 OrderUser 객체로 관리하기로 변경됨
+//                order.odrerNm(),
+//                order.odrerTelNo(),
+                orderUser.odrerNm(),
+                orderUser.odrerTelNo(),
                 order.cpId(),
                 order.evtNo(),
                 order.evtPtnNo(),
