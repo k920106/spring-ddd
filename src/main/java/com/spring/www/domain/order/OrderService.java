@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    public Order createOrder(Order order) {
-        // 주문 유효성 검증
-//        validateCreateOrder(order);
-
+    public Order createOrder(OrderCreate order) {
         // 주문 저장
         return orderRepository.save(order);
     }

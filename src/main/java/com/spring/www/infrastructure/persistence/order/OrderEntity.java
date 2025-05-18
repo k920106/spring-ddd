@@ -1,8 +1,8 @@
 package com.spring.www.infrastructure.persistence.order;
 
-import com.spring.www.domain.order.Order;
-import com.spring.www.domain.order.OrderUser;
 import com.spring.www.infrastructure.persistence.common.BaseEntity;
+import com.spring.www.domain.order.OrderCreate;
+import com.spring.www.domain.order.OrderUser;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -94,15 +94,12 @@ public class OrderEntity extends BaseEntity {
         this.delYn = delYn;
     }
 
-    public static OrderEntity from(Order order) {
+    public static OrderEntity from(OrderCreate order) {
         OrderUser orderUser = order.orderUser();
         return new OrderEntity(
                 null,
                 order.odrStusCd(),
                 order.odrerId(),
-                // [상황] 주문자는 OrderUser 객체로 관리하기로 변경됨
-//                order.odrerNm(),
-//                order.odrerTelNo(),
                 orderUser.odrerNm(),
                 orderUser.odrerTelNo(),
                 order.cpId(),

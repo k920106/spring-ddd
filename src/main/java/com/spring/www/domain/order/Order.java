@@ -1,33 +1,5 @@
 package com.spring.www.domain.order;
 
-import jakarta.validation.constraints.Size;
-import lombok.Builder;
-
-import java.time.LocalDateTime;
-
-@Builder
-public record Order(
-        Long id,
-        String odrStusCd,
-        String odrerId,
-        // [상황] 주문자는 OrderUser 객체로 관리하기로 변경됨
-//        String odrerNm,
-//        String odrerTelNo,
-        OrderUser orderUser,
-        String cpId,
-        Long evtNo,
-        Long evtPtnNo,
-        Long dcCpnUseNo,
-        String payMtdCd,
-        Integer totPayAmt,
-        Integer dcAmt,
-        Integer usePoint,
-        String odrTypeCd,
-        String odrDd,
-        LocalDateTime odrDt,
-        @Size(min = 4, message = "cncMemo는 4자 이상이어야 합니다.")
-        String cncMemo,
-        LocalDateTime cncDt,
-        String delYn
-) {
+public interface Order {
+    Long getId();
 }
