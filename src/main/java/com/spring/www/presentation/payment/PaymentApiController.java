@@ -1,13 +1,16 @@
 package com.spring.www.presentation.payment;
 
+import com.spring.www.presentation.config.advice.ApiResponseWrap;
 import com.spring.www.application.payment.PaymentFacade;
 import com.spring.www.application.payment.command.PaymentConfirmCommandMapper;
 import com.spring.www.application.payment.command.PaymentCreateCommand;
 import com.spring.www.application.payment.command.PaymentCreateCommandMapper;
-import com.spring.www.presentation.common.CommonResponse;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/payments")
@@ -17,18 +20,20 @@ public class PaymentApiController {
     private final PaymentCreateCommandMapper paymentCreateCommandMapper;
     private final PaymentConfirmCommandMapper paymentConfirmCommandMapper;
 
+    @ApiResponseWrap
     @PostMapping("/create")
-    public ResponseEntity<CommonResponse<PaymentCreateResponse>> createPayment(@RequestBody PaymentCreateRequest paymentCreateRequest) {
+    public PaymentCreateResponse createPayment(@RequestBody PaymentCreateRequest paymentCreateRequest) {
         PaymentCreateCommand command = paymentCreateCommandMapper.from(paymentCreateRequest);
         Long paymentId = paymentFacade.createPayment(command);
-        return ResponseEntity.ok(new CommonResponse<>(new PaymentCreateResponse(paymentId)));
+        return PaymentCreateResponse.of(paymentId);
     }
 
     // 포인트 결제
+    @ApiResponseWrap
     @PutMapping("/confirm")
-    public ResponseEntity<CommonResponse<PaymentConfirmResponse>> ConfirmPayment(@RequestBody PaymentConfirmRequest paymentConfirmRequest) {
+    public PaymentConfirmResponse ConfirmPayment(@RequestBody PaymentConfirmRequest paymentConfirmRequest) {
         paymentConfirmCommandMapper.from(paymentConfirmRequest);
-        return ResponseEntity.ok(new CommonResponse<>(new PaymentConfirmResponse()));
+        return PaymentConfirmResponse.of();
     }
 
     // PG

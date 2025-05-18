@@ -1,13 +1,13 @@
 package com.spring.www.presentation.order;
 
+import com.spring.www.presentation.config.advice.ApiResponseWrap;
 import com.spring.www.application.order.OrderFacade;
 import com.spring.www.application.order.command.OrderCreateCommand;
-import com.spring.www.presentation.config.advice.ApiResponseWrap;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/orders")
@@ -20,7 +20,7 @@ public class OrderApiController {
     public OrderCreateResponse createOrder(@RequestBody OrderCreateRequest orderCreateRequest) {
         OrderCreateCommand command = OrderCreateCommand.from(orderCreateRequest);
         Long orderId = orderFacade.createOrder(command);
-        return new OrderCreateResponse(orderId);
+        return OrderCreateResponse.of(orderId);
     }
 
     // 예시
@@ -30,6 +30,6 @@ public class OrderApiController {
     public OrderCreateResponse createOrderLuckyBox(@RequestBody OrderCreateOtherRequest orderCreateOtherRequest) {
         OrderCreateCommand command = OrderCreateCommand.from(orderCreateOtherRequest);
         Long orderId = orderFacade.createOrder(command);
-        return new OrderCreateResponse(orderId);
+        return OrderCreateResponse.of(orderId);
     }
 }
