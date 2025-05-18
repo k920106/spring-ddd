@@ -2,6 +2,7 @@ package com.spring.www.presentation.payment;
 
 import com.spring.www.application.payment.PaymentFacade;
 import com.spring.www.application.payment.command.PaymentConfirmCommandMapper;
+import com.spring.www.application.payment.command.PaymentCreateCommand;
 import com.spring.www.application.payment.command.PaymentCreateCommandMapper;
 import com.spring.www.presentation.common.CommonResponse;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,8 @@ public class PaymentApiController {
 
     @PostMapping("/create")
     public ResponseEntity<CommonResponse<PaymentCreateResponse>> createPayment(@RequestBody PaymentCreateRequest paymentCreateRequest) {
-        Long paymentId = paymentFacade.createPayment(paymentCreateCommandMapper.from(paymentCreateRequest));
+        PaymentCreateCommand command = paymentCreateCommandMapper.from(paymentCreateRequest);
+        Long paymentId = paymentFacade.createPayment(command);
         return ResponseEntity.ok(new CommonResponse<>(new PaymentCreateResponse(paymentId)));
     }
 

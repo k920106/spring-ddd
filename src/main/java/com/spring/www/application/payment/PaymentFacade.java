@@ -29,7 +29,9 @@ public class PaymentFacade {
     }
 
     @Transactional
-    public Long confirmPayment(PaymentCreateCommand from) {
+    public Long confirmPayment(PaymentCreateCommand command) {
+        Payment convertedPayment = objectMapper.convertValue(command, Payment.class);
+        validateConvertedPayment(convertedPayment);
         return null;
     }
 

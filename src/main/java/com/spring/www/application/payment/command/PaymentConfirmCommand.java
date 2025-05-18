@@ -1,4 +1,4 @@
-package com.spring.www.application.order.command;
+package com.spring.www.application.payment.command;
 
 import com.spring.www.infrastructure.persistence.payment.PaymentMethod;
 import lombok.Builder;

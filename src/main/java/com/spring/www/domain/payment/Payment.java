@@ -16,4 +16,8 @@ public record Payment(
         LocalDateTime paidAt,
         LocalDateTime canceledAt
 ) {
+    public Payment {
+        //유효성 검사
+        //throw exception
+    }
 }
