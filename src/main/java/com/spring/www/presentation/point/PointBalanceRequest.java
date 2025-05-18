@@ -1,9 +1,8 @@
 package com.spring.www.presentation.point;
 
-public record PointUseRequest(
+public record PointBalanceRequest(
         String accessToken,
         String ci,
-        Long pointUse,
-        String wkbPaymentNo
+        String companyCode
 ) {
 }
