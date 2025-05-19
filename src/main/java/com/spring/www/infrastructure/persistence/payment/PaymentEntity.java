@@ -1,8 +1,16 @@
 package com.spring.www.infrastructure.persistence.payment;
 
-import com.spring.www.domain.payment.Payment;
 import com.spring.www.infrastructure.persistence.common.BaseEntity;
-import jakarta.persistence.*;
+import com.spring.www.domain.payment.Payment;
+import com.spring.www.domain.payment.PaymentMethod;
+import com.spring.www.domain.payment.PaymentStatus;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

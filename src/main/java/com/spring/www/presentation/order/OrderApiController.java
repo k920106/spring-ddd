@@ -18,7 +18,7 @@ public class OrderApiController {
     @ApiResponseWrap
     @PostMapping("/create")
     public OrderCreateResponse createOrder(@RequestBody OrderCreateRequest orderCreateRequest) {
-        OrderCreateCommand command = OrderCreateCommand.from(orderCreateRequest);
+        OrderCreateCommand command = orderCreateRequest.from();
         Long orderId = orderFacade.createOrder(command);
         return OrderCreateResponse.of(orderId);
     }
@@ -28,7 +28,7 @@ public class OrderApiController {
     @ApiResponseWrap
     @PostMapping("/create/luckybox")
     public OrderCreateResponse createOrderLuckyBox(@RequestBody OrderCreateOtherRequest orderCreateOtherRequest) {
-        OrderCreateCommand command = OrderCreateCommand.from(orderCreateOtherRequest);
+        OrderCreateCommand command = orderCreateOtherRequest.from();
         Long orderId = orderFacade.createOrder(command);
         return OrderCreateResponse.of(orderId);
     }

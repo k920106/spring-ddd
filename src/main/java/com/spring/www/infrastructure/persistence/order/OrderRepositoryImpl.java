@@ -4,8 +4,8 @@ import com.spring.www.domain.order.Order;
 import com.spring.www.domain.order.OrderCreate;
 import com.spring.www.domain.order.OrderFind;
 import com.spring.www.domain.order.OrderRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository

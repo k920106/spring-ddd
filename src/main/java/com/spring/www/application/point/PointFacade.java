@@ -1,11 +1,12 @@
 package com.spring.www.application.point;
 
 import com.spring.www.application.point.command.use.PointUseCommand;
-import com.spring.www.application.point.command.balance.PointBalanceCommand;
 import com.spring.www.domain.payment.PaymentService;
 import com.spring.www.domain.point.PointService;
-import lombok.RequiredArgsConstructor;
+import com.spring.www.domain.user.User;
+import com.spring.www.domain.user.UserService;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 퍼사드 (Facade)
@@ -16,15 +17,17 @@ import org.springframework.stereotype.Service;
 public class PointFacade {
     private final PointService pointService;
     private final PaymentService paymentService;
+    private final UserService userService;
 
-    public Long balance(PointBalanceCommand command) {
-        return pointService.balance(command);
+    public Long balance() {
+        User user = userService.getUser("aptner");
+        return pointService.balance(user);
     }
 
     public void use(PointUseCommand command) {
         // 기존 포인트 조회
         // 결제 성공을 호출해야된다
+//        pointService.use(command);
         paymentService.updatePayment();
-//        return pointService.use(command);
     }
 }

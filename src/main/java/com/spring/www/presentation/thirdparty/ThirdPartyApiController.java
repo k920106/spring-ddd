@@ -1,15 +1,9 @@
 package com.spring.www.presentation.thirdparty;
 
 import com.spring.www.presentation.config.advice.ApiResponseWrap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +21,7 @@ public class ThirdPartyApiController {
         return new ThirdPartyPointBalanceResponse(1000L);
     }
 
+    @ApiResponseWrap
     @PostMapping("/points/balance/skt")
     public ThirdPartyPointBalanceResponse balancePointSkt(
             @RequestBody ThirdPartyPointBalanceSktRequest thirdPartyPointBalanceSktRequest
@@ -37,6 +32,7 @@ public class ThirdPartyApiController {
         return new ThirdPartyPointBalanceResponse(2000L);
     }
 
+    @ApiResponseWrap
     @GetMapping("/points/balance/kt")
     public ThirdPartyPointBalanceResponse balancePointKt(
             @RequestHeader("Authorization") String accessToken
@@ -47,6 +43,7 @@ public class ThirdPartyApiController {
         return new ThirdPartyPointBalanceResponse(3000L);
     }
 
+    @ApiResponseWrap
     @GetMapping("/points/balance/ibk")
     public ThirdPartyPointBalanceResponse balancePointIbk(
             @RequestHeader("ci") String ci
@@ -57,6 +54,7 @@ public class ThirdPartyApiController {
         return new ThirdPartyPointBalanceResponse(4000L);
     }
 
+    @ApiResponseWrap
     @GetMapping("/points/balance/aptner")
     public ThirdPartyPointBalanceResponse balancePointAptner(
             @RequestParam("ci") String ci

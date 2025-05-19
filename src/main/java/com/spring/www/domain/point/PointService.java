@@ -1,19 +1,19 @@
 package com.spring.www.domain.point;
 
-import com.spring.www.application.point.command.balance.PointBalanceCommand;
-import lombok.RequiredArgsConstructor;
+import com.spring.www.domain.user.User;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class PointService {
-    private final PointReader pointReader;
+    private final PointGateway pointGateway;
 
-    public Long balance(PointBalanceCommand command) {
-        return pointReader.balance(command);
+    public Long balance(User user) {
+        return pointGateway.balance(user);
     }
 
     public Long use() {
-        return pointReader.use();
+        return pointGateway.use();
     }
 }

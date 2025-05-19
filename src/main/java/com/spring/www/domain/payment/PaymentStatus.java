@@ -1,4 +1,4 @@
-package com.spring.www.infrastructure.persistence.payment;
+package com.spring.www.domain.payment;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
