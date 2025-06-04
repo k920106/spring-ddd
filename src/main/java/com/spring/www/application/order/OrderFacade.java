@@ -18,4 +18,9 @@ public class OrderFacade {
         Order savedOrder = orderService.createOrder(command.toOrder());
         return savedOrder.getId();
     }
+
+    @Transactional
+    public void cancelOrder(Long id) {
+        orderService.cancel(id);
+    }
 }

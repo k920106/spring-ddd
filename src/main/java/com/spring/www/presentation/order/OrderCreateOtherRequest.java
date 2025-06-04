@@ -44,9 +44,9 @@ public record OrderCreateOtherRequest(
                                  .dcAmt(dcAmt())
                                  .usePoint(usePoint())
                                  .odrTypeCd(odrTypeCd())
-                                 .odrDd(odrDd())
-                                 .cncMemo(cncMemo())
-                                 .delYn(delYn())
+//                                 .odrDd(odrDd())
+//                                 .cncMemo(cncMemo())
+//                                 .delYn(delYn())
                                  .build();
     }
 }

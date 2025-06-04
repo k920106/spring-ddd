@@ -1,7 +1,7 @@
 package com.spring.www.infrastructure.persistence.order;
 
 import com.spring.www.infrastructure.persistence.common.BaseEntity;
-import com.spring.www.domain.order.OrderCreate;
+import com.spring.www.domain.order.Order;
 import com.spring.www.domain.order.OrderUser;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -94,28 +94,28 @@ public class OrderEntity extends BaseEntity {
         this.delYn = delYn;
     }
 
-    public static OrderEntity from(OrderCreate order) {
-        OrderUser orderUser = order.orderUser();
+    public static OrderEntity from(Order order) {
+        OrderUser orderUser = order.getOrderUser();
         return new OrderEntity(
-                null,
-                order.odrStusCd(),
-                order.odrerId(),
+                order.getId(),
+                order.getOdrStusCd(),
+                order.getOdrerId(),
                 orderUser.odrerNm(),
                 orderUser.odrerTelNo(),
-                order.cpId(),
-                order.evtNo(),
-                order.evtPtnNo(),
-                order.dcCpnUseNo(),
-                order.payMtdCd(),
-                order.totPayAmt(),
-                order.dcAmt(),
-                order.usePoint(),
-                order.odrTypeCd(),
-                order.odrDd(),
-                LocalDateTime.now(),
-                order.cncMemo(),
-                LocalDateTime.now(),
-                "N"
+                order.getCpId(),
+                order.getEvtNo(),
+                order.getEvtPtnNo(),
+                order.getDcCpnUseNo(),
+                order.getPayMtdCd(),
+                order.getTotPayAmt(),
+                order.getDcAmt(),
+                order.getUsePoint(),
+                order.getOdrTypeCd(),
+                order.getOdrDd(),
+                order.getOdrDt(),
+                order.getCncMemo(),
+                order.getCncDt(),
+                order.getDelYn()
         );
     }
 }

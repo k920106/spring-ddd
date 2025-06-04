@@ -3,10 +3,7 @@ package com.spring.www.presentation.order;
 import com.spring.www.presentation.config.advice.ApiResponseWrap;
 import com.spring.www.application.order.OrderFacade;
 import com.spring.www.application.order.command.OrderCreateCommand;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -31,5 +28,12 @@ public class OrderApiController {
         OrderCreateCommand command = orderCreateOtherRequest.from();
         Long orderId = orderFacade.createOrder(command);
         return OrderCreateResponse.of(orderId);
+    }
+
+    @ApiResponseWrap
+    @PostMapping("/{id}/cancel")
+    public OrderCancelResponse cancelOrder(@PathVariable Long id) {
+        orderFacade.cancelOrder(id);
+        return OrderCancelResponse.of();
     }
 }

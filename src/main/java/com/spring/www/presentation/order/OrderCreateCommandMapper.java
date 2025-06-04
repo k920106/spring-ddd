@@ -1,7 +1,6 @@
-package com.spring.www.application.order.command;
+package com.spring.www.presentation.order;
 
-import com.spring.www.presentation.order.OrderCreateOtherRequest;
-import com.spring.www.presentation.order.OrderCreateRequest;
+import com.spring.www.application.order.command.OrderCreateCommand;
 import com.spring.www.domain.order.OrderUser;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,7 @@ public class OrderCreateCommandMapper {
         OrderUser orderUser = OrderUser.of(orderCreateRequest.odrerNm(), orderCreateRequest.odrerTelNo());
 
         return OrderCreateCommand.builder()
-            .odrStusCd(orderCreateRequest.odrStusCd())
+//            .odrStusCd(orderCreateRequest.odrStusCd())
             .odrerId(orderCreateRequest.odrerId())
             .orderUser(orderUser)
             .cpId(orderCreateRequest.cpId())
@@ -26,9 +25,9 @@ public class OrderCreateCommandMapper {
             .dcAmt(orderCreateRequest.dcAmt())
             .usePoint(orderCreateRequest.usePoint())
             .odrTypeCd(orderCreateRequest.odrTypeCd())
-            .odrDd(orderCreateRequest.odrDd())
-            .cncMemo(orderCreateRequest.cncMemo())
-            .delYn(orderCreateRequest.delYn())
+//            .odrDd(orderCreateRequest.odrDd())
+//            .cncMemo(orderCreateRequest.cncMemo())
+//            .delYn(orderCreateRequest.delYn())
             .build();
     }
 
@@ -49,9 +48,9 @@ public class OrderCreateCommandMapper {
             .dcAmt(orderCreateOtherRequest.dcAmt())
             .usePoint(orderCreateOtherRequest.usePoint())
             .odrTypeCd(orderCreateOtherRequest.odrTypeCd())
-            .odrDd(orderCreateOtherRequest.odrDd())
-            .cncMemo(orderCreateOtherRequest.cncMemo())
-            .delYn(orderCreateOtherRequest.delYn())
+//            .odrDd(orderCreateOtherRequest.odrDd())
+//            .cncMemo(orderCreateOtherRequest.cncMemo())
+//            .delYn(orderCreateOtherRequest.delYn())
             .build();
     }
 }

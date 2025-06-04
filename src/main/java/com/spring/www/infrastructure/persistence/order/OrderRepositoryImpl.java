@@ -1,8 +1,7 @@
 package com.spring.www.infrastructure.persistence.order;
 
 import com.spring.www.domain.order.Order;
-import com.spring.www.domain.order.OrderCreate;
-import com.spring.www.domain.order.OrderFind;
+import com.spring.www.domain.order.OrderUser;
 import com.spring.www.domain.order.OrderRepository;
 import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;
@@ -13,15 +12,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     private final OrderJpaRepository orderJpaRepository;
 
     @Override
-    public Order save(OrderCreate order) {
+    public Order save(Order order) {
         OrderEntity savedEntity = orderJpaRepository.save(OrderEntity.from(order));
 
-        return OrderCreate.of(
+        return Order.of(
             savedEntity.getId(),
             savedEntity.getOdrStusCd(),
             savedEntity.getOdrerId(),
-            savedEntity.getOdrerNm(),
-            savedEntity.getOdrerTelNo(),
+            OrderUser.of(savedEntity.getOdrerNm(), savedEntity.getOdrerTelNo()),
             savedEntity.getCpId(),
             savedEntity.getEvtNo(),
             savedEntity.getEvtPtnNo(),
@@ -42,12 +40,12 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public Order findById(Long id) {
         OrderEntity findEntity = orderJpaRepository.findById(id).orElseThrow(() -> new OrderException(OrderExceptionResult.NOT_FOUND_ORDER));
-        return OrderFind.of(
+
+        return Order.of(
             findEntity.getId(),
             findEntity.getOdrStusCd(),
             findEntity.getOdrerId(),
-            findEntity.getOdrerNm(),
-            findEntity.getOdrerTelNo(),
+            OrderUser.of(findEntity.getOdrerNm(), findEntity.getOdrerTelNo()),
             findEntity.getCpId(),
             findEntity.getEvtNo(),
             findEntity.getEvtPtnNo(),
